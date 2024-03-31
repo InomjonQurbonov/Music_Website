@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+
+{% block title %}
+	Account
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1 class="text-primary" style="text-align: center">{{ user.username }}</h1>
+            </div>
+            <div class="card-body">
+                <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+                <h3 style="text-align: center"><a href="{% url 'change_password' %}">Change Account Password</a></h3>
+            </div>
+                <ul class="nav nav-tabs">
+                  <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#home">Your Favourite Songs</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#menu1">Your Favourite Authors</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#menu2">It's for you</a>
+                  </li>
+                </ul>
+            <!-- Betga menyularni ma'lumotlari yoziladi -->
+                <div class="tab-content">
+                  <div class="tab-pane container active" id="home">Karochchi qo'shuv</div>
+                  <div class="tab-pane container fade" id="menu1">Karochchi kimdir</div>
+                  <div class="tab-pane container fade" id="menu2">Karochchi nimadir</div>
+                </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+{% block title %}
+	RegisterPage
+{% endblock %}
+
+{% block content %}
+    <div class="container bg-light">
+        <div class="container-fluid p-5 bg-primary text-white text-center">
+            <h1>New User registration page</h1>
+        </div>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <br>
+            <input type="submit" class="btn btn-success" value="Register">
+        </form>
+        <p style="text-align: center" class="text-primary">
+            If you have already account
+            <a href="{% url 'login' %}" class="text-success">Log In</a>
+        </p>
+    </div>
+{% endblock %}

@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'bg_animated.css' %}"
+    />
+    <link rel="stylesheet" type="text/css" href="{% static 'footer.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'button.css' %}" />
+    <title>{% block title %} MainPage {% endblock %}</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="javascript:void(0)">
+          <img
+            src="{% static 'logo.jpg' %}"
+            alt="Avatar Logo"
+            style="width: 40px"
+            class="rounded-pill"
+          />
+          <a href="{% url 'index' %}" class="text-light">KingMusic</a>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mynavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mynavbar">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'new_songs' %}">New Songs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'famous_songs' %}"
+                >Famous Songs</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'authors' %}">Authors</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                role="button"
+                data-bs-toggle="dropdown"
+                >{{ user.username }}</a
+              >
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="{% url 'user' %}">Account</a>
+                  <a class="dropdown-item" href="{% url 'add_song' %}">Add Songs</a>
+                </li>
+                <hr/>
+                <li>
+                  <a class="dropdown-item" href="{% url 'favorites' %}"
+                    >Favorites</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{% url 'history' %}"
+                    >History</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{% url 'log_out' %}"
+                    >Log Out</a
+                  >
+                </li>
+              </ul>
+            </li>
+            {% else %}
+            <button class="btn_style">
+              <a href="{% url 'register' %}">Register</a>
+              <div class="arrow-wrapper">
+                <div class="arrow"></div>
+              </div>
+            </button>
+            <button class="btn_style">
+              <a href="{% url 'login' %}">Login</a>
+              <div class="arrow-wrapper">
+                <div class="arrow"></div>
+              </div>
+            </button>
+            {% endif %}
+          </ul>
+            <form class="d-flex" action="#" method="get">
+                <input class="form-control me-2" type="text" placeholder="Search" name="keyword">
+                <button class="btn btn-light" type="button">Search</button>
+            </form>
+        </div>
+      </div>
+    </nav>
+
+    <br />
+    <br />
+    <br />
+    {% block content %} {% endblock %}
+    <br />
+    <br />
+    <br />
+
+    <footer class="footer fixed-bottom" style="height: 160px">
+      <ul class="social-icon">
+        <li class="social-icon__item">
+          <a class="social-icon__link" href="#">
+            <ion-icon name="logo-facebook"></ion-icon>
+          </a>
+        </li>
+        <li class="social-icon__item">
+          <a class="social-icon__link" href="#">
+            <ion-icon name="logo-youtube"></ion-icon>
+          </a>
+        </li>
+        <li class="social-icon__item">
+          <a class="social-icon__link" href="#">
+            <ion-icon name="logo-linkedin"></ion-icon>
+          </a>
+        </li>
+        <li class="social-icon__item">
+          <a class="social-icon__link" href="#">
+            <ion-icon name="logo-instagram"></ion-icon>
+          </a>
+        </li>
+      </ul>
+      <ul class="menu">
+        <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
+        <li class="menu__item"><a class="menu__link" href="#">About</a></li>
+        <li class="menu__item"><a class="menu__link" href="#">Services</a></li>
+        <li class="menu__item"><a class="menu__link" href="#">Team</a></li>
+        <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
+      </ul>
+      <p>
+        &copy;2024
+        <a href="https://github.com/InomjonQurbonov" class="text-light"
+          >InomjonQurbonov</a
+        >
+        | All Rights Reserved
+      </p>
+    </footer>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
