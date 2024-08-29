@@ -1,17 +1,21 @@
-from django.shortcuts import render
+from django.views.generic import TemplateView
 
 
-def index(request):
-    return render(request, 'index.html')
+class IndexView(TemplateView):
+    template_name = 'index.html'
 
 
-def new_songs(request):
-    return render(request, 'for_songs/new_songs.html')
+class NewSongsView(TemplateView):
+    template_name = 'for_songs/new_songs.html'
 
 
-def famous_songs(request):
-    return render(request, 'for_songs/famous_songs.html')
+class FamousSongsView(TemplateView):
+    template_name = 'for_songs/famous_songs.html'
 
 
-def authors(request):
-    return render(request, 'for_songs/authors.html')
+class AuthorsView(TemplateView):
+    template_name = 'for_songs/authors.html'
+
+
+class ContactView(TemplateView):
+    template_name = 'contact_us.html'

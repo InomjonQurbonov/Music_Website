@@ -1,13 +1,11 @@
-from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView
 from .forms import SongsForm
+from app_news.models import Songs
 
 
-def upload_music(request):
-    if request.method == 'POST':
-        form = SongsForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('index')  # Redirect to a page showing uploaded music
-    else:
-        form = SongsForm()
-    return render(request, 'song/add_songs.html', {'form': form})
+class UploadMusicView(CreateView):
+    model = Songs
+    form_class = SongsForm
+    template_name = 'song/add_songs.html'
+    success_url = reverse_lazy('index')

@@ -19,3 +19,18 @@ class Songs(models.Model):
         verbose_name = 'Song'
         verbose_name_plural = 'Songs'
         ordering = ['-song_add_date']
+
+
+class Contact(models.Model):
+    full_name = models.CharField(max_length=250, verbose_name='Full Name')
+    email = models.EmailField(verbose_name='Email')
+    message = models.TextField(verbose_name='Message')
+    contact_date = models.DateTimeField(auto_now_add=True, verbose_name='Contact Date')
+
+    def __str__(self):
+        return self.full_name
+
+    class Meta:
+        db_table = 'contact'
+        verbose_name = 'Contact'
+        verbose_name_plural = 'Contacts'
